@@ -1,0 +1,6 @@
+<%= turbo_stream.update :invoice_form, partial: @layout %>
+<%= turbo_stream.update :footer, partial: "footer" %>
+<%= turbo_stream.update :steps, partial: "steps" %>
+
+<%= turbo_stream.update :new_invoice, partial: "form" if @step == 1 %>
+<%= turbo_stream.update :errors, "" %>

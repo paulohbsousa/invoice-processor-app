@@ -1,0 +1,21 @@
+<div class="card mt-4">
+  <div class="card-body">
+    <h5 class="card-title">Totals</h5>
+    <div class="d-flex justify-content-between">
+      <p>Subtotal</p>
+      <p><%= @invoice.totals[:subtotal] %></p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>VAT 7% on <%= @invoice.totals[:vat7] %></p>
+      <p><%= @invoice.totals[:vat7_total] %></p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>VAT 19% on <%= @invoice.totals[:vat19] %></p>
+      <p><%= @invoice.totals[:vat19_total] %></p>
+    </div>
+    <div class="d-flex justify-content-between fw-bold">
+      <p>Total EUR</p>
+      <p><%= @invoice.totals[:total] %></p>
+    </div>
+  </div>
+</div>

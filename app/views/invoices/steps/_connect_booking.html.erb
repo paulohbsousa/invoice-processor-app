@@ -1,0 +1,19 @@
+<div class="alert alert-info" role="alert">
+  <h3>Connect the correct booking item ID</h3>
+  <p>Please Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis ante sit amet turpis pulvinar semper nec at purus. Nunc metus est, sagittis ut auctor id, suscipit</p>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Connect Booking</h5>
+    <label for="booking_item">Booking item
+      <i class="bi bi-exclamation-circle"></i>
+    </label>
+    <%= text_field_tag :booking_id, nil,
+                          placeholder: "Enter your booking reference",
+                          autocomplete: "off",
+                          class: "form-control",
+                          maxlength: 10
+    %>
+  </div>
+</div>
+<input type="hidden" value="<%= @step %>" name="step"/>

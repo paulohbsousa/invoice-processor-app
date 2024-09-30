@@ -1,0 +1,92 @@
+<div class="alert alert-info" role="alert">
+  <h3>Add additional invoice details</h3>
+  <p>Please transfer all needed invoice information lorem ipsum dolor sit amet.</p>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Invoicing company</h5>
+    <div>
+      <label for="country" class="form-label">Country</label>
+      <%= select_tag :country, options_from_collection_for_select(@countries, "id", "name", @invoice.is_germany_company ? "DE" : ""),
+                   class: "form-select"
+      %>
+    </div>
+    <div>
+      <label for="tax_number" class="form-label">VAT ID or tax-number</label>
+      <%= text_field_tag :tax_number, nil,
+                         class: "form-control"
+      %>
+    </div>
+    <div>
+      <label for="company_name" class="form-label">Company name</label>
+      <%= text_field_tag :company_name, nil,
+                         class: "form-control"
+      %>
+    </div>
+    <div>
+      <label for="invoice_date" class="form-label">Invoice date</label>
+      <div data-controller="datepicker" data-datepicker-format-value="%d.%m.%Y" class="input-group">
+        <input data-datepicker-target="input" class="form-control" type="text" id="invoice_date" name="invoice_date" value="2022-03-23" readonly/>
+        <span class="input-group-text" data-datepicker-target="toggle"><i class="bi bi-calendar-date"></i></span>
+      </div>
+    </div>
+    <div>
+      <label for="invoice_number" class="form-label">Invoice number</label>
+      <%= text_field_tag :invoice_number, nil,
+                         class: "form-control"
+      %>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="street_name" class="form-label">Street name</label>
+        <%= text_field_tag :street_name, nil,
+                           class: "form-control"
+        %>
+      </div>
+      <div class="col-4">
+        <label for="street_number" class="form-label">Street number</label>
+        <%= text_field_tag :street_number, nil,
+                           class: "form-control"
+        %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label for="postal_code" class="form-label">Postal Code</label>
+        <%= text_field_tag :postal_code, nil,
+                           class: "form-control",
+                           maxlength: 5
+        %>
+      </div>
+      <div class="col">
+        <label for="city" class="form-label">City</label>
+        <%= text_field_tag :city, nil,
+                           class: "form-control"
+        %>
+      </div>
+    </div>
+    <div class="text-left mt-4">
+      <%= check_box_tag :confirm_invoice_wording, "yes", false, class: "form-check-input" %>
+      <label class="form-check-label" for="is_germany_company">The invoice has the word 'invoice' on it</label>
+    </div>
+  </div>
+</div>
+<div class="card mt-4">
+  <div class="card-body">
+    <%= turbo_frame_tag "line_items" do %>
+      <%= render @invoice.line_items %>
+    <% end %>
+    <%= turbo_frame_tag LineItem.new %>
+
+    <%= link_to new_invoice_line_item_path(@invoice),
+                class: "btn btn-secondary",
+                data: { turbo_frame: dom_id(LineItem.new) } do %>
+      <i class="bi bi-plus-square"></i> Add line item
+    <% end %>
+  </div>
+</div>
+
+<%= turbo_frame_tag "totals" do %>
+  <%= render "totals" %>
+<% end %>
+<input type="hidden" value="<%= @step %>" name="step"/>

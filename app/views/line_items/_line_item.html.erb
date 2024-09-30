@@ -1,0 +1,19 @@
+<%= turbo_frame_tag line_item do %>
+  <%= form_for "line_item", url: invoice_line_item_path(@invoice, line_item), method: :delete do |form| %>
+  <div class="d-flex justify-content-between">
+    <h5 class="card-title">Line Item <%= line_item.id %></h5>
+    <%= form.button class: "btn btn--outline-danger" do %>
+      <i class="bi bi-x-circle"></i>
+    <% end %>
+  </div>
+  <div class="d-flex justify-content-between">
+    <p>Name of traveller</p>
+    <p><%= line_item.traveller_name %></p>
+  </div>
+  <div class="d-flex justify-content-between">
+    <p>Total</p>
+    <p><%= number_to_currency(line_item.amount, unit: line_item.currency, separator: ",", delimiter: ".") %></p>
+  </div>
+  <hr/>
+  <% end %>
+<% end %>

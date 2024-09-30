@@ -1,0 +1,18 @@
+<div class="col">
+  <object
+    data="<%= @document %>"
+    type="application/pdf"
+    width="100%"
+    height="100%"
+  >
+    <p>
+      Your browser does not support PDFs.
+      <a href="<%= @document %>">Download the PDF</a>
+    </p>
+  </object>
+
+  <p class="text-primary">
+    <i class="bi bi-exclamation-triangle-fill"></i>
+    This is not an invoice
+  </p>
+</div>

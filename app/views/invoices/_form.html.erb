@@ -1,0 +1,26 @@
+<turbo-frame id="new_invoice">
+  <h2>Process Invoice</h2>
+  <%= turbo_frame_tag "steps" do %>
+    <%= render "steps" %>
+  <% end %>
+
+  <%= form_for @invoice, url: invoice_path(@invoice), data: { "turbo-action": "replace", turbo_frame: "invoice_form" }, method: :put do |form| %>
+    <div class="container app-container">
+      <div class="row">
+        <%= render "invoices/document" %>
+        <div class="col">
+          <%= turbo_frame_tag "errors" %>
+          <div class="row" style="min-height: 600px">
+            <%= turbo_frame_tag "invoice_form" do %>
+              <%= render @layout %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%= turbo_frame_tag "footer" do %>
+      <%= render "footer" %>
+    <% end %>
+  <% end %>
+</turbo-frame>

@@ -1,0 +1,4 @@
+<%= turbo_stream.append "line_items", partial: "line_items/line_item", locals: { line_item: @line_item } %>
+<%= turbo_stream.update LineItem.new, "" %>
+<%= turbo_stream.update "totals", partial: "invoices/totals" %>
+<%= turbo_stream.update :errors, "" %>

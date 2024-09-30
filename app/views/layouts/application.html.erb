@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>InvoiceProcessorApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-refresh-method" content="morph">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="https://unpkg.com/stimulus-datepicker@1.0.5/css/datepicker.css" data-turbo-track="reload">
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <nav class="px-2 py-4 navbar sticky-top navbar-light bg-light">
+      <%= image_tag("logo.svg", :alt => "logo") %>
+    </nav>
+    <div class="app-content py-4 px-10">
+      <%= yield %>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<div class="alert alert-info" role="alert">
+  <h3>Verify the booking</h3>
+  <p>Please make sure that all of the following information is correctly shown on the received invoice.</p>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Location Invoicing Company</h5>
+    <div class="form-check form-switch">
+      <%= check_box_tag :is_germany_company, "yes", false, class: "form-check-input", role: "switch" %>
+      <label class="form-check-label" for="is_germany_company">The invoicing company also resides in Germany</label>
+    </div>
+  </div>
+</div>
+<div class="card mt-4">
+  <div class="card-body">
+    <h5 class="card-title">Booking Information</h5>
+    <div class="d-flex justify-content-between">
+      <p>Name of hotel</p>
+      <p><%= @invoice.booking.invoice_from %></p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>Name of first traveller</p>
+      <p><%= @invoice.booking.traveller_name %></p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>Check-in date</p>
+      <p><%= @invoice.booking.checkin_date.strftime("%d.%m.%Y") %></p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>Check-out date</p>
+      <p><%= @invoice.booking.checkout_date.strftime("%d.%m.%Y") %></p>
+    </div>
+    <hr>
+    <div class="text-left">
+      <%= check_box_tag :booking_information_correct, "yes", false, class: "form-check-input" %>
+      <label class="form-check-label" for="is_germany_company">All information above is correctly shown on invoice</label>
+    </div>
+  </div>
+</div>
+<div class="card mt-4">
+  <div class="card-body">
+    <h5 class="card-title">Receiving Company</h5>
+    <div class="d-flex justify-content-between">
+      <p>Name of company</p>
+      <p>Klambt Verlag GmbH & Co. Kg</p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>Additional address information</p>
+      <p>-</p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>Street name</p>
+      <p>Rotweg.</p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>Street number</p>
+      <p>8</p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>Postal code</p>
+      <p>76532</p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>City</p>
+      <p>Baden-Baden</p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>Country</p>
+      <p>Germany</p>
+    </div>
+    <hr>
+    <div class="text-left">
+      <%= check_box_tag :booking_information_correct, "yes", false, class: "form-check-input" %>
+      <label class="form-check-label" for="is_germany_company">All information above is correctly shown on invoice</label>
+    </div>
+  </div>
+</div>
+<input type="hidden" value="<%= @step %>" name="step"/>

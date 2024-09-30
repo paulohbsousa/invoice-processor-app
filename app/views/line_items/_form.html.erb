@@ -1,0 +1,72 @@
+<%= form_for "line_item", url: invoice_line_items_path(@invoice), method: :post do |form| %>
+  <div class="d-flex justify-content-between">
+    <h5 class="card-title">Line Item</h5>
+    <%= link_to invoice_line_items_path(@invoice) do %>
+      <i class="bi bi-x-circle"></i>
+    <% end %>
+  </div>
+  <div>
+    <label for="traveller_name" class="form-label">Name of traveller</label>
+    <%= form.text_field :traveller_name,
+                       class: "form-control"
+    %>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="start_date" class="form-label">Start date</label>
+      <div data-controller="datepicker" data-datepicker-format-value="%d.%m.%Y" class="input-group">
+        <input data-datepicker-target="input" class="form-control" type="text" id="start_date" name="line_item[start_date]" value="2022-03-23" readonly/>
+        <span class="input-group-text" data-datepicker-target="toggle"><i class="bi bi-calendar-date"></i></span>
+      </div>
+    </div>
+    <div class="col">
+      <label for="end_date" class="form-label">End date</label>
+      <div data-controller="datepicker" data-datepicker-format-value="%d.%m.%Y" class="input-group">
+        <input data-datepicker-target="input" class="form-control" type="text" id="end_date" name="line_item[end_date]" value="2022-03-23" readonly/>
+        <span class="input-group-text" data-datepicker-target="toggle"><i class="bi bi-calendar-date"></i></span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <label for="description" class="form-label">Description</label>
+    <%= form.text_field :description,
+                       class: "form-control"
+    %>
+  </div>
+  <div>
+    <label for="category" class="form-label">Category</label>
+    <%= form.select :category, options_from_collection_for_select(LineItem.categories_as_option, "id", "name", ""), {},
+                   class: "form-select"
+    %>
+  </div>
+  <div>
+    <label for="quantity" class="form-label">Quantity</label>
+    <%= form.text_field :quantity,
+                       class: "form-control"
+    %>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <label for="currency" class="form-label">Unit price</label>
+      <%= form.select :currency, options_for_select(%w[EUR USD], "EUR"), {},
+                     class: "form-select"
+      %>
+    </div>
+    <div class="col">
+      <label for="unit_price" class="form-label">&nbsp</label>
+      <%= form.text_field :unit_price,
+                         class: "form-control"
+      %>
+    </div>
+    <div class="col">
+      <label for="vat_rate" class="form-label">VAT rate</label>
+      <%= form.select :vat_rate, options_for_select([["Incl. 7%", 7], ["Incl. 19%", 19]], "Incl. 7%"), {},
+                     class: "form-select"
+      %>
+    </div>
+  </div>
+  <%= form.button class: "btn btn-primary mt-4" do %>
+    <i class="bi bi-check2"></i> Save line item
+  <% end %>
+  <hr/>
+<% end %>

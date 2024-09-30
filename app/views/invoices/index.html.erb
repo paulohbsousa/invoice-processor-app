@@ -1,0 +1,10 @@
+<turbo-frame id="new_invoice">
+  <h2>Process Invoice</h2>
+
+  <%= form_for :invoice, method: :post, url: "invoices" do |f| %>
+    <label for="document" class="form-label">Please upload your PDF invoice</label>
+    <%= f.file_field :document, class: "form-control mb-4", id: "document", accept: "application/pdf" %>
+
+    <button class="btn btn-primary" type="submit">New Invoice</button>
+  <% end %>
+</turbo-frame>

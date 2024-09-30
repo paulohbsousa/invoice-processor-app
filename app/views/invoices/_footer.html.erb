@@ -1,0 +1,8 @@
+<div class="fixed-bottom border-top p-4 bg-white d-flex <%= @step > 1 ? 'justify-content-between' : 'justify-content-end' %>">
+  <% if @step > 1 %>
+    <%= link_to sanitize("&larr; Previous"), edit_invoice_path(@invoice, step: @step - 1), class: "btn btn-secondary", data: { "turbo-action": "update", turbo_frame: "_top" } %>
+  <% end %>
+  <% unless @last_step %>
+    <%= button_tag sanitize("Go To Next Step &rarr;"), class: "btn btn-primary", type: "submit" %>
+  <% end %>
+</div>
